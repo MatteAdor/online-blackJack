@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Royal Casino Blackjack - Multiplayer LAN</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♠️</text></svg>">
+    <!-- Master CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/cards.css">
+</head>
+<body>
+    <div id="app">
+        <!-- TOP NAVIGATION BAR -->
+        <header class="casino-header">
+            <div class="logo-area" id="btnLogoHome">
+                <span class="logo-crown">👑</span>
+                <div>
+                    <div class="logo-title">ROYAL CASINO</div>
+                    <div class="logo-subtitle">Blackjack Multiplayer LAN</div>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <!-- LAN Share Trigger -->
+                <button class="lan-pill-btn" id="btnOpenLanModal" title="Condividi indirizzo con amici in rete">
+                    <span>📶</span>
+                    <span id="headerLanText">LAN: Rilevamento...</span>
+                </button>
+
+                <!-- Player Profile & Bankroll -->
+                <div class="player-profile-badge" id="btnOpenProfileModal" title="Modifica Profilo">
+                    <div class="profile-avatar" id="headerPlayerAvatar">🎩</div>
+                    <div class="profile-info">
+                        <span class="profile-name" id="headerPlayerName">Giocatore</span>
+                        <span class="profile-chips" id="headerPlayerChips">$1,000</span>
+                    </div>
+                </div>
+
+                <!-- Sound Mute/Unmute -->
+                <button class="icon-btn" id="btnToggleSound" title="Attiva/Disattiva Audio">
+                    <span id="soundIcon">🔊</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ========================================== -->
+        <!-- VIEW 1: LOBBY & TABLE BROWSER -->
+        <!-- ========================================== -->
+        <main class="lobby-container" id="lobbyView">
+            <!-- Hero -->
+            <section class="lobby-hero">
+                <h1>TAVOLI BLACKJACK IN RETE</h1>
+                <p>Gioca dal vivo con amici e colleghi collegati al tuo stesso Wi-Fi. Crea una stanza o unisciti a un tavolo aperto!</p>
+            </section>
+
+            <!-- LAN Direct Connection Notice -->
+            <section class="lan-notice-card">
+                <div class="lan-notice-info">
+                    <div class="lan-wifi-icon">📡</div>
+                    <div>
+                        <div class="lan-notice-title">Gioca insieme sulla stessa rete Wi-Fi</div>
+                        <div class="lan-notice-text">
+                            Fai aprire questo link sui telefoni o PC dei tuoi amici:
+                            <span class="lan-notice-url" id="lanFullUrl">http://...:8080</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="lan-btn-group">
+                    <button class="btn-secondary" id="btnCopyLanLink">📋 Copia Link</button>
+                    <button class="btn-gold" id="btnShowQrCode">📱 Mostra QR Code</button>
+                </div>
+            </section>
+
+            <!-- Tables Section Header -->
+            <div class="lobby-section-header">
+                <div class="section-title">
+                    <span>🎰</span>
+                    <span>Tavoli da Gioco Attivi</span>
+                </div>
+                <button class="btn-gold" id="btnOpenCreateModal">
+                    <span>➕</span>
+                    <span>Crea Nuovo Tavolo</span>
+                </button>
+            </div>
+
+            <!-- Tables Grid -->
+            <section class="tables-grid" id="tablesGrid">
+                <!-- Dynamically populated tables -->
+                <div class="empty-tables-msg">
+                    <p style="font-size: 18px; margin-bottom: 8px;">Nessun tavolo aperto al momento.</p>
+                    <p style="font-size: 14px;">Clicca su "Crea Nuovo Tavolo" per essere il mazziere o primo giocatore!</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- ========================================== -->
+        <!-- VIEW 2: CASINO FELT GAME TABLE -->
+        <!-- ========================================== -->
+        <section class="game-container" id="gameView" style="display: none;">
+            <!-- Felt Table Surface -->
+            <div class="casino-felt">
+                <!-- Golden Felt Print / Rules -->
+                <div class="felt-banner">
+                    <div class="felt-rules-text">BLACKJACK PAYS 3 TO 2</div>
+                    <div class="felt-subrules">Dealer must draw to 16 and stand on all 17s</div>
+                    <div class="felt-curved-line"></div>
+                    <div class="felt-subrules" style="color: #ffd700;">INSURANCE PAYS 2 TO 1</div>
+                </div>
+
+                <!-- Top Bar: Discard, Dealer, Shoe -->
+                <div class="table-top-bar">
+                    <div class="discard-tray">
+                        <span>SCARTI</span>
+                        <span id="discardCount" style="color: #cbd5e1; font-size: 13px;">0</span>
+                    </div>
+
+                    <!-- Dealer Station -->
+                    <div class="dealer-station">
+                        <div class="dealer-badge">
+                            <span>🎰</span>
+                            <span>BANCO CASINO</span>
+                        </div>
+                        <div class="dealer-cards-area" id="dealerCardsArea">
+                            <!-- Dealer Cards Rendered Here -->
+                        </div>
+                    </div>
+
+                    <div class="card-shoe">
+                        <span>SABOT</span>
+                        <span id="shoeCardCount" style="color: #ffd700; font-size: 14px; margin-top: 4px;">312</span>
+                        <div class="shoe-lip"></div>
+                    </div>
+                </div>
+
+                <!-- Player Seats Arc -->
+                <div class="seats-container" id="seatsContainer">
+                    <!-- Populated dynamically: Seats 0 to 4 -->
+                </div>
+            </div>
+
+            <!-- Bottom Control Dock -->
+            <footer class="table-controls-dock">
+                <!-- Left: Chat Toggle & Leave Table -->
+                <div class="dock-left-actions">
+                    <button class="btn-secondary" id="btnToggleChat">
+                        <span>💬</span>
+                        <span>Chat Tavolo</span>
+                    </button>
+                    <button class="btn-secondary" id="btnLeaveTable">
+                        <span>🚪</span>
+                        <span>Lascia Tavolo</span>
+                    </button>
+                </div>
+
+                <!-- Center: Interactive Betting / Playing Controls -->
+                <div class="dock-center-controls" id="dockCenterControls">
+                    <!-- Dynamically swapped based on phase -->
+                </div>
+
+                <!-- Right: Quick Rebuy & Share -->
+                <div class="dock-right-actions">
+                    <button class="btn-secondary" id="btnTableRebuy" title="Ricarica se sei a secco">
+                        <span>💵</span>
+                        <span>Ricarica</span>
+                    </button>
+                    <button class="btn-secondary" id="btnTableShare" title="Condividi con QR">
+                        <span>📱</span>
+                        <span>QR Invita</span>
+                    </button>
+                </div>
+            </footer>
+
+            <!-- In-Table Chat Panel (Collapsible) -->
+            <div class="chat-panel collapsed" id="chatPanel">
+                <div class="chat-header">
+                    <span>💬 Chat del Tavolo</span>
+                    <button class="modal-close-btn" id="btnCloseChat">&times;</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-msg system">Benvenuto al tavolo! Usa la chat o le reazioni rapide.</div>
+                </div>
+                <div class="chat-quick-emojis">
+                    <button class="emoji-btn" data-emoji="🍀">🍀</button>
+                    <button class="emoji-btn" data-emoji="🔥">🔥</button>
+                    <button class="emoji-btn" data-emoji="💰">💰</button>
+                    <button class="emoji-btn" data-emoji="👏">👏</button>
+                    <button class="emoji-btn" data-emoji="😱">😱</button>
+                    <button class="emoji-btn" data-emoji="🥂">🥂</button>
+                    <button class="emoji-btn" data-emoji="🚀">🚀</button>
+                </div>
+                <div class="chat-input-bar">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi un messaggio..." maxlength="120">
+                    <button class="chat-send-btn" id="btnSendChat">Invia</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- MODALS -->
+        <!-- ========================================== -->
+
+        <!-- 1. Create Table Modal -->
+        <div class="modal-overlay" id="createModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Crea Nuovo Tavolo</div>
+                    <button class="modal-close-btn" id="btnCloseCreateModal">&times;</button>
+                </div>
+                <form id="createTableForm">
+                    <div class="form-group">
+                        <label class="form-label">Nome Tavolo</label>
+                        <input type="text" class="form-input" id="inputTableName" value="Tavolo VIP" maxlength="24" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Numero Posti</label>
+                        <select class="form-select" id="inputMaxSeats">
+                            <option value="3">3 Posti</option>
+                            <option value="5" selected>5 Posti (Standard)</option>
+                            <option value="6">6 Posti (Grande)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Puntata Minima</label>
+                        <select class="form-select" id="inputMinBet">
+                            <option value="5">$5</option>
+                            <option value="10" selected>$10</option>
+                            <option value="25">$25</option>
+                            <option value="50">$50</option>
+                            <option value="100">$100 (High Roller)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Timer di Decisione Turno</label>
+                        <select class="form-select" id="inputTurnTimer">
+                            <option value="15">15 Secondi (Veloce)</option>
+                            <option value="20" selected>20 Secondi (Standard)</option>
+                            <option value="30">30 Secondi (Rilassato)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-gold" style="width: 100%; justify-content: center; margin-top: 10px;">
+                        🎰 Apri Tavolo e Siediti
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 2. LAN Share & QR Modal -->
+        <div class="modal-overlay" id="qrModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">📱 Connetti Dispositivi LAN</div>
+                    <button class="modal-close-btn" id="btnCloseQrModal">&times;</button>
+                </div>
+                <div class="qr-modal-body">
+                    <p style="font-size: 13px; color: #94a3b8;">
+                        Scansiona il QR con la fotocamera del tuo smartphone o inserisci l'indirizzo nel browser di un altro PC collegato al tuo Wi-Fi:
+                    </p>
+                    <div class="qr-code-frame" id="qrContainer">
+                        <!-- Loaded from /api/qr -->
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <input type="text" class="form-input" id="qrUrlInput" readonly style="text-align: center; font-weight: bold; color: #ffd700;">
+                    </div>
+                    <button class="btn-gold" id="btnCopyQrUrl" style="width: 100%; justify-content: center;">
+                        📋 Copia Indirizzo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Profile & Avatar Modal -->
+        <div class="modal-overlay" id="profileModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">Profilo Giocatore</div>
+                    <button class="modal-close-btn" id="btnCloseProfileModal">&times;</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Il Tuo Nickname</label>
+                    <input type="text" class="form-input" id="inputProfileName" maxlength="16">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Scegli il tuo Avatar</label>
+                    <div class="avatar-grid" id="avatarGrid">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+                <div class="form-group" style="margin-top: 20px;">
+                    <button class="btn-gold" id="btnSaveProfile" style="width: 100%; justify-content: center;">
+                        💾 Salva Profilo
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications Container -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/static/js/audio.js"></script>
+    <script src="/static/js/cards.js"></script>
+    <script src="/static/js/chips.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

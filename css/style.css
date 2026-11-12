@@ -1,0 +1,1259 @@
+/* ===================================================================
+   ROYAL CASINO BLACKJACK - MASTER LUXURY STYLING
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #06090e;
+    color: #e2e8f0;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Background Atmosphere */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 25%, rgba(13, 148, 136, 0.08) 0%, rgba(5, 10, 16, 0.98) 85%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+#app {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Top Navigation Header --- */
+.casino-header {
+    background: rgba(10, 14, 23, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(212, 175, 55, 0.25);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.logo-crown {
+    font-size: 26px;
+    filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.6));
+}
+
+.logo-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #fff7d6 0%, #ffd700 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-subtitle {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lan-pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.lan-pill-btn:hover {
+    background: rgba(45, 62, 90, 0.9);
+    border-color: #ffd700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.player-profile-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 4px 14px 4px 6px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.player-profile-badge:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+}
+
+.profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 1px solid #d4af37;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.profile-chips {
+    font-size: 12px;
+    font-weight: 800;
+    color: #4ade80;
+    font-family: 'Cinzel', monospace;
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 16px;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffd700;
+    border-color: #ffd700;
+}
+
+/* ===================================================================
+   LOBBY VIEW (HOME SCREEN)
+   =================================================================== */
+
+.lobby-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    flex: 1;
+    width: 100%;
+}
+
+.lobby-hero {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.lobby-hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 60%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+}
+
+.lobby-hero p {
+    color: #94a3b8;
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* LAN Banner Card */
+.lan-notice-card {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.lan-notice-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.lan-wifi-icon {
+    font-size: 34px;
+    color: #38bdf8;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+}
+
+.lan-notice-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 4px;
+}
+
+.lan-notice-text {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.lan-notice-url {
+    font-family: monospace;
+    font-weight: bold;
+    color: #fef08a;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(254, 240, 138, 0.2);
+}
+
+.lan-btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Section Header & Create Button */
+.lobby-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
+    color: #0f172a;
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    filter: brightness(1.1);
+}
+
+.btn-gold:active {
+    transform: translateY(1px);
+}
+
+/* Tables Grid */
+.tables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.table-card {
+    background: linear-gradient(145deg, rgba(20, 27, 43, 0.8), rgba(11, 16, 26, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.table-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+.table-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ffd700, #10b981);
+}
+
+.table-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.table-card-name {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f8fafc;
+    margin-bottom: 4px;
+}
+
+.table-phase-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-phase-badge.betting {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.table-phase-badge.playing {
+    background: rgba(234, 179, 8, 0.2);
+    color: #facc15;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.table-card-stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    padding: 10px 14px;
+    border-radius: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+
+.btn-join-table {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.9);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: #ffd700;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-join-table:hover {
+    background: #d4af37;
+    color: #0f172a;
+    font-weight: 800;
+}
+
+.empty-tables-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 50px 20px;
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 16px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+}
+
+/* ===================================================================
+   CASINO TABLE VIEW (IN-GAME SCREEN)
+   =================================================================== */
+
+.game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Casino Felt Surface */
+.casino-felt {
+    flex: 1;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 30%, #0c5737 0%, #063821 65%, #032113 100%);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px 20px 10px;
+    border-bottom: 12px solid #2e1808; /* Walnut wooden bumper */
+    outline: 5px solid #140b04;
+}
+
+/* Felt Decorative Golden Graphics & Rules */
+.felt-banner {
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    opacity: 0.35;
+    width: 90%;
+    max-width: 800px;
+}
+
+.felt-rules-text {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 900;
+    color: #ffd700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.felt-subrules {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #e2e8f0;
+    text-transform: uppercase;
+}
+
+.felt-curved-line {
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    margin: 8px auto;
+}
+
+/* Shoe & Dealer Accessories */
+.table-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.discard-tray {
+    width: 70px;
+    height: 90px;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(212, 175, 55, 0.5);
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-shoe {
+    width: 85px;
+    height: 105px;
+    border: 2px solid #d4af37;
+    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.85), rgba(5, 5, 10, 0.95));
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(212, 175, 55, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+}
+
+.shoe-lip {
+    position: absolute;
+    bottom: -6px;
+    left: 10%;
+    width: 80%;
+    height: 8px;
+    background: #b8860b;
+    border-radius: 4px;
+}
+
+/* Dealer Station */
+.dealer-station {
+    text-align: center;
+    margin-top: -10px;
+    z-index: 15;
+}
+
+.dealer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10, 15, 25, 0.85);
+    border: 1px solid #d4af37;
+    padding: 3px 14px;
+    border-radius: 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.dealer-cards-area {
+    min-height: var(--card-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-bottom: 18px;
+}
+
+/* Seats Arc Container */
+.seats-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    z-index: 20;
+    gap: 12px;
+    padding-bottom: 8px;
+}
+
+/* Individual Player Seat */
+.player-seat {
+    flex: 1;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.player-seat.is-active {
+    filter: drop-shadow(0 0 16px rgba(255, 215, 0, 0.85));
+}
+
+.player-seat.is-active .seat-player-box {
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    background: rgba(30, 41, 59, 0.95);
+}
+
+/* Cards In Hand Area */
+.seat-cards-area {
+    min-height: var(--card-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.split-hands-container {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+.single-split-hand {
+    position: relative;
+    padding: 4px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.single-split-hand.is-active-split {
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid #ffd700;
+}
+
+/* Player Info Box */
+.seat-player-box {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 8px 10px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s;
+}
+
+.seat-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #1e293b;
+    border: 1.5px solid #d4af37;
+    margin: -24px auto 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.seat-player-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #f8fafc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.seat-player-bankroll {
+    font-size: 12px;
+    font-weight: 800;
+    color: #4ade80;
+    font-family: 'Cinzel', monospace;
+}
+
+/* Empty Seat Button */
+.empty-seat-btn {
+    width: 100%;
+    height: 80px;
+    border: 2px dashed rgba(212, 175, 55, 0.4);
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    color: rgba(212, 175, 55, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.empty-seat-btn:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: #ffd700;
+    color: #ffd700;
+    transform: scale(1.03);
+}
+
+/* Countdown Bar */
+.turn-timer-container {
+    position: absolute;
+    bottom: -6px;
+    left: 5%;
+    width: 90%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.turn-timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #f59e0b, #ef4444);
+    width: 100%;
+    transition: width 1s linear;
+}
+
+/* ===================================================================
+   BOTTOM CONTROL DOCK (BETTING & ACTION CONTROLS)
+   =================================================================== */
+
+.table-controls-dock {
+    background: linear-gradient(180deg, #0f172a 0%, #090e17 100%);
+    border-top: 2px solid rgba(212, 175, 55, 0.3);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 88px;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.6);
+    z-index: 50;
+    position: relative;
+}
+
+/* Left Area: Table Info & Chat Toggle */
+.dock-left-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 180px;
+}
+
+.btn-secondary {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-secondary:hover {
+    background: rgba(51, 65, 85, 0.9);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Center Area: Chips or Game Buttons */
+.dock-center-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex: 1;
+}
+
+/* Chip Selector Tray */
+.chip-rack {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 6px 14px;
+    border-radius: 36px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Game Action Buttons */
+.action-buttons-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    height: 60px;
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+.btn-action:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    filter: grayscale(0.8);
+    transform: none !important;
+}
+
+.btn-action:not(:disabled):hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+}
+
+.btn-action:not(:disabled):active {
+    transform: translateY(1px);
+}
+
+.btn-hit {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.btn-stand {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+}
+
+.btn-double {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+.btn-split {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.btn-deal-confirm {
+    background: linear-gradient(135deg, #ffd700 0%, #ca8a04 100%);
+    color: #0f172a;
+    font-size: 15px;
+    padding: 0 24px;
+    min-width: 140px;
+    box-shadow: 0 4px 15px rgba(234, 179, 8, 0.5);
+}
+
+/* Right Area: Helper actions (Clear, Rebet) */
+.dock-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 180px;
+    justify-content: flex-end;
+}
+
+/* ===================================================================
+   CHAT DRAWER & SYSTEM NOTIFICATIONS
+   =================================================================== */
+
+.chat-panel {
+    position: absolute;
+    bottom: 96px;
+    left: 20px;
+    width: 320px;
+    height: 380px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    z-index: 80;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.chat-panel.collapsed {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.chat-header {
+    padding: 10px 14px;
+    background: rgba(30, 41, 59, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.chat-msg {
+    font-size: 12px;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.chat-msg.system {
+    color: #ffd700;
+    font-style: italic;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border-left: 2px solid #ffd700;
+}
+
+.chat-msg-author {
+    font-weight: 700;
+    color: #38bdf8;
+    margin-right: 4px;
+}
+
+.chat-quick-emojis {
+    display: flex;
+    gap: 4px;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.emoji-btn {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: transform 0.15s;
+}
+
+.emoji-btn:hover {
+    transform: scale(1.3);
+}
+
+.chat-input-bar {
+    padding: 8px 10px;
+    display: flex;
+    gap: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+}
+
+.chat-input:focus {
+    border-color: #ffd700;
+}
+
+.chat-send-btn {
+    background: #d4af37;
+    border: none;
+    color: #0f172a;
+    font-weight: bold;
+    padding: 0 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===================================================================
+   MODALS (CREATE TABLE, LAN SHARE QR, PROFILE)
+   =================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #141c2c, #0c121e);
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 460px;
+    padding: 26px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.15);
+    position: relative;
+    animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalPop {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffd700;
+}
+
+.modal-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover {
+    color: #fff;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #cbd5e1;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-input, .form-select {
+    width: 100%;
+    background: rgba(10, 15, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-input:focus, .form-select:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+/* Avatar Picker Grid */
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.avatar-choice {
+    font-size: 22px;
+    height: 42px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.avatar-choice.selected, .avatar-choice:hover {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #ffd700;
+    transform: scale(1.1);
+}
+
+/* QR Code Display Container */
+.qr-modal-body {
+    text-align: center;
+}
+
+.qr-code-frame {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    display: inline-block;
+    margin: 16px 0;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.qr-code-frame svg {
+    display: block;
+    width: 180px;
+    height: 180px;
+}
+
+/* Toast Notifications */
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid #ffd700;
+    color: #f8fafc;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    animation: toastIn 0.3s ease;
+    pointer-events: auto;
+}
+
+@keyframes toastIn {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Responsive Design for Tablets and Smartphones */
+@media (max-width: 768px) {
+    .casino-header {
+        padding: 8px 12px;
+    }
+    .logo-title {
+        font-size: 16px;
+    }
+    .logo-subtitle {
+        display: none;
+    }
+    .lan-pill-btn {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    .lobby-hero h1 {
+        font-size: 26px;
+    }
+    .lan-notice-card {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+        padding: 16px;
+    }
+    .lan-notice-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .lan-btn-group {
+        width: 100%;
+        justify-content: center;
+    }
+    .seats-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 10px 10px;
+        gap: 8px;
+    }
+    .player-seat {
+        min-width: 130px;
+        flex: 0 0 130px;
+    }
+    .betting-spot {
+        width: 62px;
+        height: 62px;
+    }
+    .table-controls-dock {
+        padding: 8px 12px;
+        flex-direction: column;
+        gap: 10px;
+        min-height: auto;
+    }
+    .dock-left-actions, .dock-right-actions {
+        min-width: auto;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .btn-action {
+        min-width: 70px;
+        height: 50px;
+        font-size: 12px;
+    }
+    .chat-panel {
+        width: calc(100% - 24px);
+        left: 12px;
+        bottom: 80px;
+        height: 320px;
+    }
+}
