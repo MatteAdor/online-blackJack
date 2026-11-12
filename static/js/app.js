@@ -25,6 +25,8 @@ class BlackjackApp {
         this.prevDealerCards = [];
         this.prevSeatCards = {};
         this.turnTimerInterval = null;
+        this.isStaticMode = false;
+        this.clientEngine = null;
 
         this.init();
     }
@@ -137,6 +139,10 @@ class BlackjackApp {
     // ----------------- Static GitHub Pages Engine -----------------
     initStaticCloudMode() {
         this.isStaticMode = true;
+        if (!this.clientEngine && window.ClientBlackjackEngine) {
+            this.clientEngine = new window.ClientBlackjackEngine(this);
+        }
+
         const headerText = document.getElementById('headerLanText');
         if (headerText) headerText.textContent = '🌐 GitHub Pages Online';
         
@@ -161,16 +167,9 @@ class BlackjackApp {
             this.setupCopyButton();
         }
 
-        // BroadcastChannel for instant multi-tab communication on the same PC
-        if (window.BroadcastChannel) {
-            this.bc = new BroadcastChannel('blackjack_gh_pages');
-            this.bc.onmessage = (e) => {
-                this.handleServerMessage(e.data);
-            };
+        if (this.clientEngine) {
+            this.clientEngine.broadcastLobbiesList();
         }
-
-        // Initialize local client-side rooms simulation or cloud sync
-        this.initClientSideRooms();
         this.showToast('Modalità Online GitHub Pages Attiva', 'success');
     }
 
@@ -182,28 +181,15 @@ class BlackjackApp {
         });
     }
 
-    initClientSideRooms() {
-        // Load existing rooms from localStorage or create default VIP room
-        const savedRooms = JSON.parse(localStorage.getItem('rc_gh_rooms') || '[]');
-        if (savedRooms.length === 0) {
-            savedRooms.push({
-                id: 'room_vip_public',
-                name: 'Tavolo VIP Aperto',
-                seated_count: 0,
-                max_seats: 5,
-                spectators_count: 0,
-                min_bet: 10,
-                max_bet: 1000,
-                phase: 'betting'
-            });
-            localStorage.setItem('rc_gh_rooms', JSON.stringify(savedRooms));
-        }
-        this.renderLobbiesList(savedRooms);
-    }
-
     send(type, payload = {}) {
+        if (this.isStaticMode && this.clientEngine) {
+            this.clientEngine.handleAction(this.player, type, payload);
+            return;
+        }
         if (this.ws && this.ws.readyState === WebSocket.OPEN) {
             this.ws.send(JSON.stringify({ type, ...payload }));
+        } else if (this.clientEngine) {
+            this.clientEngine.handleAction(this.player, type, payload);
         }
     }
 
